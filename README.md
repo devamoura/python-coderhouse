@@ -20,7 +20,7 @@ pip install pandas requests plyer
 1. **Extração e Carregamento**:
    - Os dados das APIs são extraídos, salvos como CSV e inseridos no banco de dados SQLite executando:
      ```python
-     python main.py
+     python extract_api.py
      ```
 
 2. **Consultas no Banco de Dados**:
