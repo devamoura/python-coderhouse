@@ -2,7 +2,7 @@
 # Projeto de Extração de Dados de APIs e Carregamento em Banco de Dados
 
 ## Descrição
-Este projeto em Python realiza a extração de dados de APIs, salva os dados em arquivos CSV e armazena-os em um banco de dados SQLite. Além disso, é possível realizar consultas no banco para visualizar os dados salvos.
+Este projeto em Python realiza a extração de dados de APIs relacionadas a F1, salva os dados em arquivos CSV e armazena-os em um banco de dados SQLite. Além disso, é possível realizar consultas no banco para visualizar os dados salvos.
 
 ## Dependências
 - `pandas`
@@ -20,7 +20,7 @@ pip install pandas requests plyer
 1. **Extração e Carregamento**:
    - Os dados das APIs são extraídos, salvos como CSV e inseridos no banco de dados SQLite executando:
      ```python
-     python main.py
+     python extract_api.py
      ```
 
 2. **Consultas no Banco de Dados**:
