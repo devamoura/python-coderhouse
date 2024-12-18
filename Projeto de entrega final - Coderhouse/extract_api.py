@@ -193,6 +193,6 @@ def load_all_tables(tables, db_name='../data_f1.db'):
             print(f"Erro ao carregar dados da tabela {table} ou tabela não encontrada.")
 
 
-tables = ['meetings_f1', 'drivers_f1', 'sessions_f1']
+tables = ['meetings_F1', 'drivers_F1', 'sessions_F1']
 
 load_all_tables(tables)
