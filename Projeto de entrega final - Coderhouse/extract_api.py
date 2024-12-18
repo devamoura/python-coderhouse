@@ -36,6 +36,38 @@ def alert(level, base, step):
         timeout=15
     )
 
+# Função para tratamento de dados extraídos da API
+def clean_data(data):
+    """
+    Realiza o tratamento de dados extraídos da API.
+
+    Args:
+        data (dict): Dados brutos retornados pela API.
+
+    Returns:
+        pd.DataFrame: DataFrame tratado.
+    """
+    try:
+        df = pd.DataFrame(data)
+        
+        columns_to_drop = [col for col in df.columns if 'unnecessary' in col.lower()]
+        df.drop(columns=columns_to_drop, inplace=True, errors='ignore')
+
+        
+        df.fillna('Desconhecido', inplace=True)
+
+        
+        df.rename(columns=lambda x: x.strip().lower().replace(' ', '_'), inplace=True)
+
+        
+        df.drop_duplicates(inplace=True)
+        
+        return df
+    except Exception as e:
+        alert(3, 'Tratamento de Dados', 'Limpeza')
+        print(f'Erro ao tratar os dados: {e}')
+        return pd.DataFrame()
+
 # Função para extrair os dados da API
 def extract_api(url):
     """
@@ -62,16 +94,8 @@ def extract_api(url):
 
 # Criação do dataframe a partir dos dados
 def dataframe_create(output, csv_name):
-    """
-    Extrai dados de uma API fornecida.
 
-    Args:
-        url (str): URL da API a ser acessada.
-
-    Returns:
-        dict or None: Dados da API em formato JSON se bem-sucedido, caso contrário, None.
-    """
-    df = pd.DataFrame(output)
+    df = clean_data(output)
     df.to_csv(f'{csv_name}.csv', index=False)
     print(f'Arquivo {csv_name}.csv criado.')
     return df
